@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  service-registry:
+    image: "konped/service-registry"
+    container_name: "service-registry"
+    ports:
+      - "8761:8761"
+
+  config-server:
+    image: "konped/config-server"
+    container_name: "config-server"
+    ports:
+      - "9000:9000"
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://service-registry:8761/eureka/
+    depends_on:
+      - service-registry
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://config-server:9000/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cloudgateway:
+    image: "konped/cloudgateway"
+    container_name: "cloudgateway"
+    ports:
+      - "9090:9090"
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://service-registry:8761/eureka/
+      - CONFIG_SERVER_ADDRESS=config-server
+    depends_on:
+      config-server:
+        condition: service_healthy
