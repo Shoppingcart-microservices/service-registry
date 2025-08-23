@@ -1,0 +1,14 @@
+# persistent volume - the actual storage to store the data
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  hostPath:
+    path: "/run/desktop/mnt/host/c/temp/testfiles"
+    type: DirectoryOrCreate

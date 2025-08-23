@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-app
+  labels:
+    app: zipkin-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin-app
+  template:
+    metadata:
+      name: zipkin-app
+      labels:
+        app: zipkin-app
+    spec:
+      containers:
+        - name: zipkin-app
+          image: openzipkin/zipkin
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9411
+              protocol: TCP
+      restartPolicy: Always
+      

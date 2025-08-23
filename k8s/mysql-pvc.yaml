@@ -1,0 +1,12 @@
+# persistent volume claim - with that claim we can get the access to the volume (the actual storage)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
