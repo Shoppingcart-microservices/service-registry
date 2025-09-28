@@ -12,4 +12,4 @@ kind: ConfigMap
 metadata:
   name: mysql-cm
 data:
-  hostname: "mysql-svc"
+  hostname: "mysql-0.mysql"
