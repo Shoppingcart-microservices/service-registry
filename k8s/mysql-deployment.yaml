@@ -91,7 +91,7 @@ spec:
 
 ---
 
-# persistent volume claim - with that claim we can get the access to the volume (the actual storage)
+# persistent volume claim - with that claim we can get the access to the volume (the actual storage).
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
