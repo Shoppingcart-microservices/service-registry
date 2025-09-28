@@ -73,7 +73,7 @@ spec:
       port: 3306
 
 #---
-#
+# Use Google cloud volumes instead of custom.
 ## persistent volume - the actual storage to store the data
 #apiVersion: v1
 #kind: PersistentVolume
